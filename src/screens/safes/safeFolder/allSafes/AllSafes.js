@@ -38,8 +38,8 @@ const AllSafes = ({ setSelectSafe }) => {
     const searchText = inputRef?.current.value;
     setSearchTerm(searchText);
     if (searchText !== "") {
-      const newAllSafes = allSafes.filter((item) => {
-        return item.SafeName.toLowerCase().includes(searchText.toLowerCase());
+      const newAllSafes = data.filter((result) => {
+        return result.SafeName.toLowerCase().includes(searchText.toLowerCase());
       });
       setNewSafeList(newAllSafes);
     } else {
