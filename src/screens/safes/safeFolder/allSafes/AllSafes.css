@@ -1,0 +1,176 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap");
+.allSafes {
+  background-color: #151820;
+  width: 35%;
+  color: white;
+}
+
+.itemmmssss {
+  color: white;
+}
+
+.topSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 3.5rem;
+  border-bottom: solid 1px #2a2e3e;
+}
+
+.topSectionLeft {
+  display: flex;
+  justify-content: center;
+  margin-left: 2rem;
+  position: relative;
+  margin-right: 1rem;
+}
+.downBtnClass {
+  margin-left: 1.5rem;
+  cursor: pointer;
+}
+
+.safesCount {
+  font-size: 1rem;
+  font-family: "Roboto", sans-serif;
+}
+
+.searchIcon {
+  position: absolute;
+  padding-left: 0.9rem;
+  padding-top: 0.5rem;
+}
+
+.searchIcon:hover {
+  cursor: pointer;
+}
+
+#searchBar {
+  height: 2.5rem;
+  margin-right: 0.5rem;
+  /* width: 17rem; */
+  padding-left: 3rem;
+  cursor: pointer;
+  background-color: #20232e;
+  color: #5e627c;
+}
+::placeholder {
+  color: #5e627c;
+  font-family: "Helvetica", "Arial", sans-serif;
+  font-size: 1rem;
+}
+
+.emptyDiv {
+  height: calc(100% - 3.5rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#createNewBtn {
+  z-index: 2;
+  background-color: hsl(329, 69%, 39%);
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  margin-bottom: -12rem;
+  color: white;
+  font-size: 1.5rem;
+}
+
+#createNewBtn:hover {
+  cursor: pointer;
+}
+
+#createNewBtn:hover .onHoverShowText {
+  cursor: pointer;
+  visibility: visible;
+  cursor: pointer;
+  position: absolute;
+}
+
+#createNewBtn .onHoverShowText {
+  visibility: hidden;
+  position: absolute;
+  background: white;
+  margin-left: -4.5rem;
+  font-size: 0.8rem;
+  margin-top: 4rem;
+  color: black;
+  height: 1.7rem;
+  width: 8rem;
+  padding-top: 0.35rem;
+  font-weight: 600;
+}
+
+#createNewBtn-2 {
+  background-color: hsl(329, 69%, 39%);
+  z-index: 2;
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  color: white;
+  font-size: 1.5rem;
+  margin: 1rem;
+}
+
+#createNewBtn-2:hover {
+  cursor: pointer;
+}
+
+#createNewBtn-2:hover .onHoverShowText-2 {
+  cursor: pointer;
+  visibility: visible;
+  cursor: pointer;
+  position: absolute;
+  margin-left: -11rem;
+}
+
+#createNewBtn-2 .onHoverShowText-2 {
+  visibility: hidden;
+  position: absolute;
+  background: white;
+  font-size: 0.8rem;
+  color: black;
+  height: 1.7rem;
+  width: 8rem;
+  padding-top: 0.35rem;
+  font-weight: 600;
+}
+
+.items-btn-wrap {
+  display: flex;
+  height: calc(100% - 3.5rem);
+  flex-direction: column;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.items {
+  width: 100%;
+  height: 3.5rem;
+}
+
+.items-wrap {
+  width: 100%;
+}
+
+.allSafe-wrapper {
+  align-items: self-end;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100% - 3.5rem);
+}
+
+.notFound {
+  width: 100%;
+  height: 2rem;
+  font-size: 1rem;
+  font-family: "Helvetica", "Arial", sans-serif;
+  padding-left: 1.5rem;
+}
+
+#assestImg{
+  height: 15rem;
+}

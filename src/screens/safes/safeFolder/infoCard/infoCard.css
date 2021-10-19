@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap");
+
+.infoCard-li {
+  width: 100%;
+  padding: 0;
+  height: 100%;
+}
+
+.infoCard-item {
+  display: flex;
+  align-items: center;
+  /* justify-content: space-evenly; */
+  width: 100%;
+}
+
+.infoCard-SafeName {
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+}
+
+.infoCard-state {
+  font-family: "Helvetica", "Arial", sans-serif;
+  font-size: 0.7rem;
+  color: #33ab78;
+  font-style: oblique;
+  padding-left: 0.2rem;
+}
+
+.infoCard-Description {
+  font-family: "Helvetica", "Arial", sans-serif;
+  opacity: 0.7;
+}
+
+.deleteSafe {
+  border-radius: 50%;
+  height: 2rem;
+  width: 2rem;
+  background-color: #72134b;
+  border: solid 1px #1d212c;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.deleteSafe:hover {
+  cursor: pointer;
+  color: #72134b;
+  background-color: aliceblue;
+  transition: all 0.2s ease-in;
+}
+
+.iconSafe {
+  padding: 0 1.5rem 0 1rem;
+}
+
+.deleteBtn {
+  padding: 0 1.5rem;
+  height: 1.2rem;
+}
+
+.deleteBtn:hover {
+  transition: all 0.3s ease-in-out;
+}
+
+.infoCard-li {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  /* border-bottom: solid 1px rgba(175, 177, 190, 0.5); */
+  border-bottom: solid 0.5px #2a2e3e;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+
+.infoCard-li:hover {
+  cursor: pointer;
+  transition: all 0.7s ease-in-out;
+  background-image: linear-gradient(to right, #72134b, #1d212c);
+}
+
+.active {
+  transition: all 0.7s ease-in-out;
+  background-image: linear-gradient(to right, #72134b, #1d212c);
+}

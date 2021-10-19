@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+  height: 100vh;
+  background-image: linear-gradient(to top, #2f3545, #1d212c);
+}
+
+.content {
+  display: flex;
+  height: 100%;
+  padding: 9rem 5rem 4.5rem 5rem;
+}
