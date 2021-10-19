@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import api from "../api";
 import { editFolder } from "../redux/actions/AllSafeSlice";
 import "./PopUp.css";
+import OutsideClickHandler from "react-outside-click-handler";
 
 const CreateSecretFolder = (props) => {
   const dispatch = useDispatch();
@@ -42,27 +43,36 @@ const CreateSecretFolder = (props) => {
 
   return (
     <div className="popup">
-      <form className="form" onSubmit={addFolder}>
-        <h2 className="form-h2">Add folder</h2>
-        <span className="form-fname">Folder Name</span>
-        <div className="SafeInputs">
-          <input
-            className="inputTag"
-            type="text"
-            placeholder="Enter Folder Name"
-            value={folder}
-            onChange={(e) => setFolder(e.target.value)}
-          ></input>
-          <p className="bottomP">Please add a minimum of 10 characters</p>
-        </div>
-        <div className="buttons">
-          <button className="cancelBtn" onClick={() => props.setTrigger(false)}>
-            Cancel
-          </button>
-          <input type="submit" value="+ Create" className="createBtn" />
-          {props.children}
-        </div>
-      </form>
+      <OutsideClickHandler
+        onOutsideClick={() => {
+          props.setTrigger(false);
+        }}
+      >
+        <form className="form" onSubmit={addFolder}>
+          <h2 className="form-h2">Add folder</h2>
+          <span className="form-fname">Folder Name</span>
+          <div className="SafeInputs">
+            <input
+              className="inputTag"
+              type="text"
+              placeholder="Enter Folder Name"
+              value={folder}
+              onChange={(e) => setFolder(e.target.value)}
+            ></input>
+            <p className="bottomP">Please add a minimum of 10 characters</p>
+          </div>
+          <div className="buttons">
+            <button
+              className="cancelBtn"
+              onClick={() => props.setTrigger(false)}
+            >
+              Cancel
+            </button>
+            <input type="submit" value="+ Create" className="createBtn" />
+            {props.children}
+          </div>
+        </form>
+      </OutsideClickHandler>
     </div>
   );
 };

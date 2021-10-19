@@ -17,14 +17,10 @@
 .form {
   opacity: 1;
   padding: 2rem;
-  top: 0;
-  position: relative;
-  margin: auto;
+
   max-width: 35rem;
-  width: 100%;
+
   background-color: #2a2e3e;
-  display: flex;
-  flex-direction: column;
 }
 
 .form-h2 {

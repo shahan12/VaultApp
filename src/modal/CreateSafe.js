@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { addSafe } from "../redux/actions/AllSafeSlice";
 import api from "../api";
 import axios from "axios";
+import OutsideClickHandler from "react-outside-click-handler";
 
 const CreateSafe = (props) => {
   const [inputList, setInputList] = useState([]);
@@ -53,62 +54,67 @@ const CreateSafe = (props) => {
 
   return (
     <div className="popup">
-      <form className="form" onSubmit={add}>
-        <h2 className="form-h2">Create Safe</h2>
-        <div className="infoDiv">
-          <img src={icon_safe} className="shieldImg" alt="safeImage"></img>
-          <p className="topP">
-            A Safe is a logical unit to store the secrets. All the safes are
-            created within Vault. You can control access only at the safe level.
-            As a vault administrator you can manage safes but cannot view the
-            content of the safe.
-          </p>
-        </div>
-        <div className="SafeInputs">
-          <label>Safe Name</label>
-          <input
-            className="inputTag"
-            type="text"
-            placeholder="Enter Safe Name"
-            value={SafeName}
-            onChange={(e) => setSafeName(e.target.value)}
-          ></input>
-          <label>Owner</label>
-          <input
-            className="inputTag"
-            type="text"
-            placeholder="Enter Owner Name"
-            value={Owner}
-            onChange={(e) => setOwner(e.target.value)}
-          ></input>
-          <label>Type</label>
-          <select
-            className="createSafeSelect"
-            value={Type}
-            onChange={(e) => setType(e.target.value)}
-          >
-            <option value="personal">Personal</option>
-            <option value="corporate">Corporate</option>
-            <option value="shared">Shared</option>
-          </select>
-          <label>Description</label>
-          <textarea
-            placeholder="Enter Description About Safe"
-            rows="6"
-            cols="50"
-            value={Description}
-            onChange={(e) => setDescription(e.target.value)}
-          ></textarea>
-          <p className="bottomP">Please add a minimum of 10 characters</p>
-        </div>
-        <div className="buttons">
-          <button className="cancelBtn" onClick={() => props.setTrigger(false)}>
-            Cancel
-          </button>
-          <input type="submit" value="+ Create" className="createBtn" />
-          {props.children}
-        </div>
-      </form>
+      <OutsideClickHandler onOutsideClick={() => props.setTrigger(false)}>
+        <form className="form" onSubmit={add}>
+          <h2 className="form-h2">Create Safe</h2>
+          <div className="infoDiv">
+            <img src={icon_safe} className="shieldImg" alt="safeImage"></img>
+            <p className="topP">
+              A Safe is a logical unit to store the secrets. All the safes are
+              created within Vault. You can control access only at the safe
+              level. As a vault administrator you can manage safes but cannot
+              view the content of the safe.
+            </p>
+          </div>
+          <div className="SafeInputs">
+            <label>Safe Name</label>
+            <input
+              className="inputTag"
+              type="text"
+              placeholder="Enter Safe Name"
+              value={SafeName}
+              onChange={(e) => setSafeName(e.target.value)}
+            ></input>
+            <label>Owner</label>
+            <input
+              className="inputTag"
+              type="text"
+              placeholder="Enter Owner Name"
+              value={Owner}
+              onChange={(e) => setOwner(e.target.value)}
+            ></input>
+            <label>Type</label>
+            <select
+              className="createSafeSelect"
+              value={Type}
+              onChange={(e) => setType(e.target.value)}
+            >
+              <option value="personal">Personal</option>
+              <option value="corporate">Corporate</option>
+              <option value="shared">Shared</option>
+            </select>
+            <label>Description</label>
+            <textarea
+              placeholder="Enter Description About Safe"
+              rows="6"
+              cols="50"
+              value={Description}
+              onChange={(e) => setDescription(e.target.value)}
+            ></textarea>
+            <p className="bottomP">Please add a minimum of 10 characters</p>
+          </div>
+          <div className="buttons">
+            <button
+              className="cancelBtn"
+              onClick={() => props.setTrigger(false)}
+            >
+              Cancel
+            </button>
+            <input type="submit" value="+ Create" className="createBtn" />
+            {props.children}
+          </div>
+        </form>
+      </OutsideClickHandler>
     </div>
   );
 };
