@@ -8,7 +8,7 @@ import InfoCard from "../infoCard/InfoCard";
 import { useSelector } from "react-redux";
 import api from "../../../../api";
 
-const AllSafes = ({ setSelectSafe }) => {
+const AllSafes = ({ setSelectSafe, refresh, pagereload }) => {
   const [CreateSafePopup, setCreateSafePopup] = useState(false);
   const allSafes = useSelector((state) => state.allSafe);
   const [searchTerm, setSearchTerm] = useState("");
@@ -17,21 +17,26 @@ const AllSafes = ({ setSelectSafe }) => {
   const [newSafeList, setNewSafeList] = useState([]);
   const [clickedActiveId, setClickedActiveId] = useState("");
   const [data, setData] = useState([]);
-  const [refresh, setRefresh] = useState(0);
-  const pagereload = () => {
-    setRefresh(refresh + 1);
-    console.log("refrsh", refresh);
-  };
-  useEffect(() => {
-    api.get(``).then((res) => {
+  const [filteredData, setFilteredData] = useState([]);
+  // const [refresh, setRefresh] = useState(0);
+  // const pagereload = () => {
+  //   setRefresh(refresh + 1);
+  //   setSelectSafe({});
+  //   console.log("refrsh", refresh);
+  // };
+  useEffect(async () => {
+    await api.get(``).then((res) => {
       const result = res.data;
       console.log("reso/t", res);
       setData(result);
+      setSelectSafe(result[0]);
+      setClickedActiveId(result[0]?._id);
+      setFilteredData(result);
     });
   }, [refresh]);
   const AddFolder = (data) => {
     setSelectSafe(data);
-    setClickedActiveId(data._id);
+    setClickedActiveId(data?._id);
   };
   //
   const filteredAllSafes = () => {
@@ -41,9 +46,10 @@ const AllSafes = ({ setSelectSafe }) => {
       const newAllSafes = data.filter((result) => {
         return result.SafeName.toLowerCase().includes(searchText.toLowerCase());
       });
-      setNewSafeList(newAllSafes);
+      setFilteredData(newAllSafes);
     } else {
-      return allSafes;
+      console.log("in else ", data);
+      setFilteredData(data);
     }
   };
 
@@ -51,7 +57,7 @@ const AllSafes = ({ setSelectSafe }) => {
     <div className="allSafes">
       <div className="topSection">
         <div className="topSectionLeft">
-          <span className="safesCount">All Safes ({data.length})</span>
+          <span className="safesCount">All Safes ({filteredData.length})</span>
           <img className="downBtnClass" src={downBtn}></img>
         </div>
         <div className="topSectionRight">
@@ -94,7 +100,7 @@ const AllSafes = ({ setSelectSafe }) => {
         <div className="items-btn-wrap">
           {/*  Search not exists*/}
           {!searchTerm &&
-            data.map((result) => {
+            filteredData.map((result) => {
               return (
                 <div className="items-wrap">
                   <div key={result.Owner} className="items">
@@ -117,6 +123,7 @@ const AllSafes = ({ setSelectSafe }) => {
                         idd={result._id}
                         reload={pagereload}
                         Type={result.Type}
+                        setSelectSafe={setSelectSafe}
                       />
                     </ul>
                   </div>
@@ -127,7 +134,7 @@ const AllSafes = ({ setSelectSafe }) => {
           {/* Search exits */}
           {searchTerm &&
             newSafeList &&
-            data.map((result) => {
+            filteredData.map((result) => {
               return (
                 <div className="items-wrap">
                   <div key={result.Owner} className="items">
@@ -153,7 +160,7 @@ const AllSafes = ({ setSelectSafe }) => {
             })}
 
           {/* display No search found */}
-          {searchTerm && newSafeList.length === 0 && (
+          {searchTerm && filteredData.length === 0 && (
             <div className="items-wrap">
               <div className="items">
                 <ul id="notFound">

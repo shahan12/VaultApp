@@ -8,7 +8,12 @@ import ValutAppRoles from "./screens/valutAppRoles/ValutAppRoles";
 
 function App() {
   const [selectSafe, setSelectSafe] = useState();
-
+  const [refresh, setRefresh] = useState(0);
+  const pagereload = () => {
+    setRefresh(refresh + 1);
+    setSelectSafe({});
+    console.log("refrsh", refresh);
+  };
   return (
     <Router>
       <div className="wrapper">
@@ -16,8 +21,16 @@ function App() {
         <div className="content">
           <Switch>
             <Route exact path="/">
-              <AllSafes setSelectSafe={setSelectSafe} />
-              <SecretSafes selectSafe={selectSafe} />
+              <AllSafes
+                setSelectSafe={setSelectSafe}
+                refresh={refresh}
+                pagereload={pagereload}
+              />
+              <SecretSafes
+                selectSafe={selectSafe}
+                refresh={refresh}
+                pagereload={pagereload}
+              />
             </Route>
             <Route path="/ValutAppRoles" component={ValutAppRoles} />
             <Route path="/ServiceAccounts" component={ValutAppRoles} />

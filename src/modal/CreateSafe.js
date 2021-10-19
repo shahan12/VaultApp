@@ -15,7 +15,7 @@ const CreateSafe = (props) => {
 
   const dispatch = useDispatch();
 
-  const add = (e) => {
+  const add = async (e) => {
     e.preventDefault();
     if (SafeName.length !== 0 || Owner.length !== 0) {
       if (Description.length >= 10) {
@@ -28,7 +28,7 @@ const CreateSafe = (props) => {
           })
         );
         console.log(Type, "typein safe");
-        api
+        await api
           .post("/", {
             SafeName: SafeName,
             Owner: Owner,

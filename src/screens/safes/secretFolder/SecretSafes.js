@@ -9,7 +9,7 @@ import folderIcon from "../../../assests/images/folderIcon.svg";
 import secret from "../../../../src/assests/images/secret.png";
 import AllSafes from "../safeFolder/allSafes/AllSafes";
 
-const SecretSafes = ({ selectSafe }) => {
+const SecretSafes = ({ selectSafe, refresh, pagereload }) => {
   console.log(selectSafe, "selectSafe in secret");
   const [CreateSecretPopup, setCreateSecretPopup] = useState(false);
   //const allSafes = useSelector((state) => state.allSafe);
@@ -29,12 +29,13 @@ const SecretSafes = ({ selectSafe }) => {
           backgroundRepeat: "no-repeat",
         }}
       >
-        {!selectSafe && <span id="safeName">No Safe Selected </span>}
-        {selectSafe?.SafeName && (
+        {selectSafe?.SafeName ? (
           <span id="safeName">
             {" "}
             {selectSafe.Owner} / {selectSafe.SafeName}{" "}
           </span>
+        ) : (
+          <span id="safeName">No Safe Selected </span>
         )}
         {/* {<span id="safeName"> No Safe Created</span>} */}
         <span id="safeDescription">
@@ -57,10 +58,8 @@ const SecretSafes = ({ selectSafe }) => {
           </div>
         </div>
         <div className="secrets-container">
-          <span id="totalSecrets">
-            {secrets === null ? 0 : secrets?.length} Secrets
-          </span>
-          {secrets === null && (
+          <span id="totalSecrets">{secrets?.length || 0} Secrets</span>
+          {!secrets && (
             <div className="emptysecret">
               <img className="secretpng" src={secret} alt="secret"></img>{" "}
               <span className="addBtnSpan"></span>
@@ -70,6 +69,7 @@ const SecretSafes = ({ selectSafe }) => {
           {CreateSecretPopup && (
             <CreateSecretFolder
               selectID={selectSafe._id}
+              pagereload={pagereload}
               setTrigger={setCreateSecretPopup}
             />
           )}
@@ -96,7 +96,7 @@ const SecretSafes = ({ selectSafe }) => {
               <img src={locker} alt="O"></img>
             </div>
           )}
-          {selectSafe && (
+          {selectSafe?.SafeName && (
             <span className="addBtnSpan">
               <button
                 onClick={() => setCreateSecretPopup(true)}

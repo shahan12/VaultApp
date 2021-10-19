@@ -11,9 +11,9 @@ import api from "../../../../api";
 const InfoCard = ({ SafeName, Description, id, Owner, idd, reload, Type }) => {
   const dispatch = useDispatch();
   const [editSafePopup, setEditSafePopup] = useState(false);
-  const handleDeleteClick = (idd) => {
+  const handleDeleteClick = async (idd) => {
     //dispatch(deleteSafe({ SafeName: SafeName }));
-    api
+    await api
       .delete(`/${idd}`)
       .then((res) => {
         console.log("delete res", res);

@@ -14,7 +14,7 @@ const CreateSecretFolder = (props) => {
   const pId = props.selectID;
   console.log(pId, " id of selected ");
 
-  const addFolder = (e) => {
+  const addFolder = async (e) => {
     e.preventDefault();
     if (folder.length > 9) {
       dispatch(
@@ -23,7 +23,7 @@ const CreateSecretFolder = (props) => {
           folder: folder,
         })
       );
-      api
+      await api
         .put(`/secret/${pId}`, { secret: folder })
         .then(console.log("secretsucess"))
 
@@ -34,6 +34,7 @@ const CreateSecretFolder = (props) => {
       console.log(folder, "secret value");
 
       props.setTrigger(false);
+      props.pagereload();
     } else {
       alert("please fill min 10");
     }
