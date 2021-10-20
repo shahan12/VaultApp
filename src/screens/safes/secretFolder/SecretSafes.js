@@ -89,11 +89,11 @@ const SecretSafes = ({ selectSafe, refresh, pagereload }) => {
             </div>
           )}
           {console.log(selectSafe, "selectsafein secret")}
-          {!selectSafe && (
+          {/* {!selectSafe && (
             <div id="emptyDiv-2">
               <img src={locker} alt="O"></img>
             </div>
-          )}
+          )} */}
           {selectSafe?.SafeName && (
             <span className="addBtnSpan">
               <button
