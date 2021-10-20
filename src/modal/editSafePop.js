@@ -36,7 +36,7 @@ const EditSafePop = (props) => {
   //   }
   // };
 
-  const add = (e) => {
+  const add = async (e) => {
     e.preventDefault();
     // using redux
     dispatch(
@@ -48,20 +48,23 @@ const EditSafePop = (props) => {
         Type: Type,
       })
     );
-    api
+    await api
       .patch(`/${props.idd}`, {
         SafeName: SafeName,
         Owner: Owner,
         Description: Description,
         Type: Type,
       })
-      .then(console.log("sucess"))
+      .then((res) => {
+        if (res?.data?.message?.code === 11000) alert("Same safe name exists");
+        else {
+          props.setTrigger(false);
+          props.pagereload();
+        }
+      })
       .catch((error) => {
         console.log(error.responce);
       });
-
-    props.setTrigger(false);
-    props.reload();
   };
 
   return (

@@ -31,12 +31,13 @@ const InfoCard = ({ SafeName, Description, id, Owner, idd, reload, Type }) => {
         <img src={iconSafe} alt="iconSafe" className="iconSafe"></img>
         <div className="infoCard-data">
           <div className="infoCard-SafeName">
-            {SafeName}/{/* <span className="infoCard-state">New</span> */}
+            {SafeName}
+            {/* <span className="infoCard-state">New</span> */}
           </div>
           <div className="infoCard-Description">
             {Description}
             {/* <span>&#183;</span>{" "} */}
-            <span className="infoCard-Owner">{Owner} Safe</span>
+            <span className="infoCard-Owner"> / {Owner} </span>
           </div>
         </div>
       </div>

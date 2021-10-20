@@ -76,11 +76,10 @@
 
 .infoCard-li:hover {
   cursor: pointer;
-  transition: all 0.7s ease-in-out;
+
   background-image: linear-gradient(to right, #72134b, #1d212c);
 }
 
 .active {
-  transition: all 0.7s ease-in-out;
   background-image: linear-gradient(to right, #72134b, #1d212c);
 }

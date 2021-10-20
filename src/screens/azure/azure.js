@@ -1,20 +1,8 @@
-// import React from "react";
-//
-
-// const ValutAppRoles = () =>{
-
-//     return (<div className="Valut">
-//         <h1>App Valut Roles</h1>
-//     </div>);
-// }
-
-// export default ValutAppRoles;
-
 import React, { Component } from "react";
 import { useLocation } from "react-router-dom";
-import "./ValutAppRoles.css";
+import "../valutAppRoles/ValutAppRoles.css";
 
-function ValutAppRoles() {
+function Azure() {
   const useQuery = () => {
     return new URLSearchParams(useLocation().search);
   };
@@ -24,11 +12,14 @@ function ValutAppRoles() {
 
   return (
     <div className="Valut">
-      <h1>ValutAppRoles </h1>
-      <h1>{userName}</h1>
+      <h1>Azure Page</h1>
+      <h1>
+        <p></p>
+        {userName}
+      </h1>
       <h1>{userId}</h1>
     </div>
   );
 }
 
-export default ValutAppRoles;
+export default Azure;

@@ -6,50 +6,58 @@ import { addSafe } from "../redux/actions/AllSafeSlice";
 import api from "../api";
 import axios from "axios";
 import OutsideClickHandler from "react-outside-click-handler";
+import Loader from "react-loader-spinner";
 
 const CreateSafe = (props) => {
-  const [inputList, setInputList] = useState([]);
-  const [SafeName, setSafeName] = useState([]);
-  const [Owner, setOwner] = useState([]);
-  const [Description, setDescription] = useState([]);
+  const [SafeName, setSafeName] = useState("");
+  const [Owner, setOwner] = useState("");
+  const [Description, setDescription] = useState("");
   const [Type, setType] = useState("personal");
-
+  const [loader, setLoader] = useState(false);
+  // console.log(props);
   const dispatch = useDispatch();
 
   const add = async (e) => {
     e.preventDefault();
-    if (SafeName.length !== 0 || Owner.length !== 0) {
-      if (Description.length >= 10) {
-        dispatch(
-          addSafe({
-            SafeName: SafeName,
-            Owner: Owner,
-            Description: Description,
-            Type: Type,
-          })
-        );
-        console.log(Type, "typein safe");
-        await api
-          .post("/", {
-            SafeName: SafeName,
-            Owner: Owner,
-            Description: Description,
-            Type: Type,
-          })
+    if (
+      SafeName.length !== 0 &&
+      Owner.length !== 0 &&
+      Description.length >= 10
+    ) {
+      // dispatch(
+      //   addSafe({
+      //     SafeName: SafeName,
+      //     Owner: Owner,
+      //     Description: Description,
+      //     Type: Type,
+      //   })
+      // );
+      console.log(Type, "typein safe");
+      setLoader(true);
+      await api
+        .post("/", {
+          SafeName: SafeName,
+          Owner: Owner,
+          Description: Description,
+          Type: Type,
+        })
 
-          .then(console.log("sucess"))
-          .catch((error) => {
-            console.log(error.responce);
-          });
-
-        props.setTrigger(false);
-      } else {
-        alert("please fill min 10 charaters");
-      }
+        .then((res) => {
+          setLoader(false);
+          if (res?.data?.message?.code === 11000)
+            alert("Same safe name exists");
+          else {
+            props.setTrigger(false);
+            props.pagereload();
+          }
+        })
+        .catch((error) => {
+          setLoader(false);
+          console.log(error.responce);
+        });
     } else {
       alert("please fill all details");
     }
-    props.pagereload();
   };
 
   return (
@@ -103,16 +111,22 @@ const CreateSafe = (props) => {
             ></textarea>
             <p className="bottomP">Please add a minimum of 10 characters</p>
           </div>
-          <div className="buttons">
-            <button
-              className="cancelBtn"
-              onClick={() => props.setTrigger(false)}
-            >
-              Cancel
-            </button>
-            <input type="submit" value="+ Create" className="createBtn" />
-            {props.children}
-          </div>
+          {loader ? (
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <Loader type="Circles" color="#00BFFF" height={50} width={50} />
+            </div>
+          ) : (
+            <div className="buttons">
+              <button
+                className="cancelBtn"
+                onClick={() => props.setTrigger(false)}
+              >
+                Cancel
+              </button>
+              <input type="submit" value="+ Create" className="createBtn" />
+              {props.children}
+            </div>
+          )}
         </form>
       </OutsideClickHandler>
     </div>

@@ -10,7 +10,7 @@
   justify-content: space-between;
   height: 4rem;
   z-index: 3;
-  padding: 0 5rem;
+  padding: 0 10rem;
 }
 
 .rH2-li {
@@ -137,6 +137,23 @@ ul {
 
 #active {
   height: 100%;
-  transition: all 0.7s ease-in-out;
+
   background-image: linear-gradient(to top, #72134b, #1d212c);
+}
+@media screen and (min-width: 1800px) {
+  body {
+    font-size: 20px;
+  }
+  ul {
+    font-size: 16px;
+  }
+  .leftHead {
+    font-size: 16px;
+  }
+  #logoText {
+    font-size: 30px;
+  }
+  .siteLogo {
+    height: 2.5rem;
+  }
 }

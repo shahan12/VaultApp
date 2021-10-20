@@ -13,5 +13,11 @@ body {
 .content {
   display: flex;
   height: 100%;
-  padding: 9rem 5rem 4.5rem 5rem;
+  padding: 9rem 10rem 4.5rem 10rem;
+}
+
+@media screen and (max-width: 1440px) {
+  html {
+    font-size: 15px;
+  }
 }

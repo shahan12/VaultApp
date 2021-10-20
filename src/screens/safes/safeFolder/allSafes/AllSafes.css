@@ -107,7 +107,7 @@
   background-color: hsl(329, 69%, 39%);
   z-index: 2;
   height: 4rem;
-  width: 4rem;
+  width: 3.8rem;
   border-radius: 50%;
   color: white;
   font-size: 1.5rem;
@@ -171,6 +171,6 @@
   padding-left: 1.5rem;
 }
 
-#assestImg{
+#assestImg {
   height: 15rem;
 }

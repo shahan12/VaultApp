@@ -68,6 +68,7 @@ const SecretSafes = ({ selectSafe, refresh, pagereload }) => {
 
           {CreateSecretPopup && (
             <CreateSecretFolder
+              selectSafe={selectSafe}
               selectID={selectSafe._id}
               pagereload={pagereload}
               setTrigger={setCreateSecretPopup}
@@ -81,10 +82,7 @@ const SecretSafes = ({ selectSafe, refresh, pagereload }) => {
                   <div className="eachFolder">
                     <span className="dropdownFolderItem">{">"}</span>
                     <img src={folderIcon} alt="folderIcon"></img>
-                    <span className="newFolder">
-                      {" "}
-                      {itemvalue} <span className="newlyAdded">New</span>
-                    </span>
+                    <span className="newFolder"> {itemvalue}</span>
                   </div>
                 );
               })}

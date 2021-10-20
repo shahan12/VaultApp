@@ -20,7 +20,7 @@ function App() {
         <Header />
         <div className="content">
           <Switch>
-            <Route exact path="/">
+            <Route exact pat h="/">
               <AllSafes
                 setSelectSafe={setSelectSafe}
                 refresh={refresh}

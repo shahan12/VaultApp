@@ -1,21 +1,30 @@
 import React, { useState } from "react";
 import "./Header.css";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+} from "react-router-dom";
 // import AllSafes from "../safes/AllSafes";
 // import SecretSafes from "../screens/secretFolder/SecretSafes";
 // import ValutAppRoles from "../ValutAppRoles";
 
 import logo from "../../assests/images/logo.png";
 import ValutAppRoles from "../../screens/valutAppRoles/ValutAppRoles";
+import ServiceAccounts from "../../screens/serviceAccounts/serviceAccounts";
+import IAMServiceAccounts from "../../screens/iamService/iamService";
+import Azure from "../../screens/azure/azure";
 
 const Header = () => {
   const [clickedActiveId, setClickedActiveId] = useState(1);
   const links = [
-    { id: 1, name: "Safes", path: "" },
+    { id: 1, name: "Safes", path: "Safes" },
     { id: 2, name: "App VaultRoles", path: "ValutAppRoles" },
-    { id: 3, name: "Service Accounts", path: "AppVaultRoles" },
-    { id: 4, name: "IAM Service Accounts", path: "AppVaultRoles" },
-    { id: 5, name: "Azure Active Directory", path: "AppVaultRoles" },
+    { id: 3, name: "Service Accounts", path: "ServiceAccounts" },
+    { id: 4, name: "IAM Service Accounts", path: "IAMSERVICEACCOUNTS" },
+    { id: 5, name: "Azure Active Directory", path: "AZURE" },
   ];
   const handleClick = (id) => {
     setClickedActiveId(id);
@@ -40,7 +49,9 @@ const Header = () => {
                 >
                   <ul className="rH2-list">
                     <Link
-                      to={`/${item.path}?name=user&userId=10`}
+                      to={`/${item.path}${
+                        item.id == 1 ? "" : "?name=shahan&userId=10"
+                      }`}
                       className="router-link-li"
                     >
                       <li className="rH2-li">{item.name}</li>
@@ -84,12 +95,25 @@ const Header = () => {
         </div>
       </div>
       <Switch>
-        <Route path="/" exact>
+        <Route exact path="/">
+          <Redirect to="/Safes" />
+        </Route>
+        <Route exact path="/Safes">
           <homePage />
         </Route>
-        <Route path="/ValutAppRoles">
+        <Route exact path="/ValutAppRoles">
           <ValutAppRoles />
         </Route>
+        <Route exact path="/ServiceAccounts">
+          <ServiceAccounts />
+        </Route>
+        <Route exact path="/IAMSERVICEACCOUNTS">
+          <IAMServiceAccounts />
+        </Route>
+        <Route exact path="/AZURE">
+          <Azure />
+        </Route>
+
         {/* <Route path="/SecretSafes">
                 <SecretSafes />
               </Route> */}
