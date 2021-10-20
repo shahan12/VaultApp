@@ -21,7 +21,7 @@ const CreateSecretFolder = (props) => {
     e.preventDefault();
     //if (/^\w+$/.test(folder.trim)) return false;
 
-    if (folder.length > 9) {
+    if (folder.length > 9 && folder.length < 20) {
       dispatch(
         editFolder({
           id: pId,
@@ -47,7 +47,7 @@ const CreateSecretFolder = (props) => {
         props.pagereload();
       }
     } else {
-      alert("please fill min 10");
+      alert("please fill min 10 and maximum 20 alphabets");
     }
   };
   const validateSecretsForm = () => {

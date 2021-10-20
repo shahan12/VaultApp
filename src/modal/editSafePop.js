@@ -38,33 +38,45 @@ const EditSafePop = (props) => {
 
   const add = async (e) => {
     e.preventDefault();
-    // using redux
-    dispatch(
-      editSafe({
-        id: matchId,
-        SafeName: SafeName,
-        Owner: Owner,
-        Description: Description,
-        Type: Type,
-      })
-    );
-    await api
-      .patch(`/${props.idd}`, {
-        SafeName: SafeName,
-        Owner: Owner,
-        Description: Description,
-        Type: Type,
-      })
-      .then((res) => {
-        if (res?.data?.message?.code === 11000) alert("Same safe name exists");
-        else {
-          props.setTrigger(false);
-          props.pagereload();
-        }
-      })
-      .catch((error) => {
-        console.log(error.responce);
-      });
+    if (
+      SafeName.length !== 0 &&
+      SafeName.length < 30 &&
+      Owner.length !== 0 &&
+      Owner.length < 30 &&
+      Description.length >= 10 &&
+      Description.length < 40
+    ) {
+      // using redux
+      dispatch(
+        editSafe({
+          id: matchId,
+          SafeName: SafeName,
+          Owner: Owner,
+          Description: Description,
+          Type: Type,
+        })
+      );
+      await api
+        .patch(`/${props.idd}`, {
+          SafeName: SafeName,
+          Owner: Owner,
+          Description: Description,
+          Type: Type,
+        })
+        .then((res) => {
+          if (res?.data?.message?.code === 11000)
+            alert("Same safe name exists");
+          else {
+            props.setTrigger(false);
+            props.reload();
+          }
+        })
+        .catch((error) => {
+          console.log(error.responce);
+        });
+    } else {
+      alert("Please enter values in the range 10 - 30 characters");
+    }
   };
 
   return (
