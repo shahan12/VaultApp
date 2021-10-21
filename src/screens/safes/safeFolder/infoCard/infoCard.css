@@ -16,6 +16,11 @@
 .infoCard-SafeName {
   font-family: "Roboto", sans-serif;
   font-size: 1rem;
+  width: 14rem;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .infoCard-state {
@@ -29,6 +34,11 @@
 .infoCard-Description {
   font-family: "Helvetica", "Arial", sans-serif;
   opacity: 0.7;
+  width: 14rem;
+  /* width: 29rem; */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .deleteSafe {

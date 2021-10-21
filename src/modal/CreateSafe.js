@@ -21,11 +21,8 @@ const CreateSafe = (props) => {
     e.preventDefault();
     if (
       SafeName.length !== 0 &&
-      SafeName.length < 30 &&
       Owner.length !== 0 &&
-      Owner.length < 30 &&
-      Description.length >= 10 &&
-      Description.length < 40
+      Description.length >= 10
     ) {
       // dispatch(
       //   addSafe({
@@ -59,7 +56,7 @@ const CreateSafe = (props) => {
           console.log(error.responce);
         });
     } else {
-      alert("Please enter values in the range 10 - 30 characters");
+      alert("Please enter values with minimum 10 characters");
     }
   };
 
